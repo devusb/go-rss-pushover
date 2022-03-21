@@ -7,12 +7,14 @@ import (
 	"net/url"
 	"os"
 	"strconv"
+	"fmt"
 )
 
 func main () {
 	refresh_int, _ := strconv.Atoi(os.Getenv("REFRESH_INTERVAL"))
 	refresh_time := time.Duration(refresh_int)
 	for {
+		fmt.Println("checking for pi")
 		checktime := time.Now().Add(time.Minute * -(refresh_time + 1))
 		fp := gofeed.NewParser()
 		feed, _ := fp.ParseURL("https://rpilocator.com/feed.rss")
