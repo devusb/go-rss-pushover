@@ -26,7 +26,7 @@ func main () {
 			data := url.Values{
 				"token": {os.Getenv("PUSHOVER_TOKEN")},
 				"user": {os.Getenv("PUSHOVER_USER")},
-				"message": {"pi is available!"},
+				"message": {feed.Items[0].Title},
 				"url": {feed.Items[0].Link},
 			}
 			_, _ = http.PostForm("https://api.pushover.net/1/messages.json", data)
