@@ -6,11 +6,14 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"strconv"
 )
 
 func main () {
+	refresh_int, _ := strconv.Atoi(os.Getenv("REFRESH_INTERVAL"))
+	refresh_time := time.Duration(refresh_int)
 	for {
-		checktime := time.Now().Add(time.Minute * -2)
+		checktime := time.Now().Add(time.Minute * -(refresh_time + 1))
 		fp := gofeed.NewParser()
 		feed, _ := fp.ParseURL("https://rpilocator.com/feed.rss")
 		timeT, _ := time.Parse("Mon, 02 Jan 2006 03:04:05 MST", feed.Updated)
@@ -24,6 +27,6 @@ func main () {
 			}
 			_, _ = http.PostForm("https://api.pushover.net/1/messages.json", data)
 		}
-		time.Sleep(1 * time.Minute)
+		time.Sleep(refresh_time * time.Minute)
 	}
 }
