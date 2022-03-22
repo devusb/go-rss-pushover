@@ -20,7 +20,7 @@ func main () {
 		fp := gofeed.NewParser()
 		feed, _ := fp.ParseURL(os.Getenv("FEED_URL"))
 		timeT, _ := time.Parse("Mon, 02 Jan 2006 15:04:05 MST", feed.Updated)
-		fmt.Println("latest found: ",feed.Items[0].Title)
+		fmt.Println("latest found:",feed.Items[0].Title,"at",timeT)
 
 		if checktime.Before(timeT) {
 			data := url.Values{
