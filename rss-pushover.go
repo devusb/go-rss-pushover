@@ -23,6 +23,7 @@ func main () {
 		fmt.Println(feed.Items[0].Title,"at",timeT)
 
 		if checktime.Before(timeT) {
+			fmt.Println("New item found, sending push notification...")
 			data := url.Values{
 				"token": {os.Getenv("PUSHOVER_TOKEN")},
 				"user": {os.Getenv("PUSHOVER_USER")},
