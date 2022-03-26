@@ -24,3 +24,4 @@ jobs:
           context: .
           push: true
           tags: devusb/go-rss-pushover:latest
+          platforms: linux/amd64,linux/arm64
