@@ -1,13 +1,9 @@
-name: rebuild on commit or push
+name: rebuild on push
 
 on: 
-  commit:
-    paths-ignore:
-      - '.github/workflows/**'
   push:
     paths-ignore:
       - '.github/workflows/**'
-    
 
 jobs:
   docker:
